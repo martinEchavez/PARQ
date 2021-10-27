@@ -1,8 +1,11 @@
 const { getConnection, sql, querys } = require('../database');
+const { getGeocoder } = require('./geocoder.controller');
 
 const createNewUser = async (req, res) => {
-  const { nombre, apellido, direccion, ciudad, longitud, latitud, estadogeo } =
-    req.body;
+  let latitud = 0;
+  let longitud = 0;
+  let estadogeo = 'F';
+  const { nombre, apellido, direccion, ciudad } = req.body;
   if (
     nombre === null ||
     apellido === null ||
@@ -13,7 +16,14 @@ const createNewUser = async (req, res) => {
       .status(400)
       .json({ message: 'Nombre, apellido, dirección y ciudad son requeridos' });
   }
+
   try {
+    const response = await getGeocoder(direccion, ciudad);
+    if (response.length !== 0) {
+      latitud = response[0].latitude;
+      longitud = response[0].longitude;
+      estadogeo = 'A';
+    }
     const pool = await getConnection();
     await pool
       .request()
@@ -52,8 +62,8 @@ const getUsers = async (req, res) => {
 };
 
 const getUserById = async (req, res) => {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     const pool = await getConnection();
     const result = await pool
       .request()
@@ -70,8 +80,8 @@ const getUserById = async (req, res) => {
 };
 
 const deleteUserById = async (req, res) => {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     const pool = await getConnection();
     const result = await pool
       .request()
