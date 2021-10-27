@@ -21,4 +21,7 @@ const getConnection = async () => {
   }
 };
 
-getConnection();
+module.exports = {
+  getConnection,
+  sql,
+};
