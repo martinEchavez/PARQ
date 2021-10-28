@@ -1,4 +1,4 @@
-const NodeGeocoder = require('node-geocoder');
+const nodeGeocoder = require('node-geocoder');
 require('dotenv').config();
 
 const options = {
@@ -8,7 +8,7 @@ const options = {
   formatter: null,
 };
 
-const geocoder = NodeGeocoder(options);
+const geocoder = nodeGeocoder(options);
 
 const getGeocoder = async (direccion, ciudad) => {
   try {

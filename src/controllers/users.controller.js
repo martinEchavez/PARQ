@@ -1,5 +1,5 @@
 const { getConnection, sql, querys } = require('../database');
-const { getGeocoder } = require('./geocoder.controller');
+const { getGeocoder } = require('../geocoder');
 
 const createNewUser = async (req, res) => {
   let latitud = 0;
