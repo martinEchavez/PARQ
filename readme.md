@@ -16,7 +16,8 @@
   <ol>
     <li><a href="#installation">Installation</a></li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#licence">Licence</a></li>
+    <li><a href="#api-endpoints">API Endpoints</a></li>
+    <li><a href="#license">License</a></li>
   </ol>
 </details>
 
