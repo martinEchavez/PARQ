@@ -17,7 +17,7 @@ const createNewUser = async (req, res) => {
       .status(400)
       .json({ message: 'Nombre, apellido, dirección y ciudad son requeridos' });
   }
-  /*
+
   try {
     const response = await getGeocoder(direccion, ciudad);
     if (response.length !== 0) {
@@ -48,7 +48,7 @@ const createNewUser = async (req, res) => {
   } catch (error) {
     res.status(500);
     res.send(error.message);
-  }*/
+  }
 };
 
 const getUsers = async (req, res) => {
