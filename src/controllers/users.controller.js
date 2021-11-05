@@ -5,18 +5,19 @@ const createNewUser = async (req, res) => {
   let latitud = 0;
   let longitud = 0;
   let estadogeo = 'F';
+  console.log(req.body.nombre);
   const { nombre, apellido, direccion, ciudad } = req.body;
   if (
-    nombre === null ||
-    apellido === null ||
-    direccion === null ||
-    ciudad === null
+    typeof nombre === 'undefined' ||
+    typeof apellido === 'undefined' ||
+    typeof direccion === 'undefined' ||
+    typeof ciudad === 'undefined'
   ) {
     return res
       .status(400)
       .json({ message: 'Nombre, apellido, dirección y ciudad son requeridos' });
   }
-
+  /*
   try {
     const response = await getGeocoder(direccion, ciudad);
     if (response.length !== 0) {
@@ -47,7 +48,7 @@ const createNewUser = async (req, res) => {
   } catch (error) {
     res.status(500);
     res.send(error.message);
-  }
+  }*/
 };
 
 const getUsers = async (req, res) => {
